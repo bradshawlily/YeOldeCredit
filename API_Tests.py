@@ -73,7 +73,24 @@ class Test_API(unittest.TestCase):
         self.assertNotEqual(return_transaction, [], "The returned list should not be empty")
 
     ##Testing the getAccountData function
+    def test_getAccountData_goodCreditScore(self):
+        testParameterKey = "creditScore"
+        testParameterValue = "gte:580"
+        getTransactionByID_return = api.getAccountData(testParameterKey, testParameterValue)
+        return_statusCode = getTransactionByID_return["status"]
+        return_account = getTransactionByID_return["account"]
+        self.assertEqual(return_statusCode, 200, "The returned status code should be 200")
+        self.assertNotEqual(return_account, [], "The returned list should not be empty")
 
+
+    def test_getAccountData_badCreditScore(self):
+        testParameterKey = "creditScore"
+        testParameterValue = "lt:580"
+        getTransactionByID_return = api.getAccountData(testParameterKey, testParameterValue)
+        return_statusCode = getTransactionByID_return["status"]
+        return_account = getTransactionByID_return["account"]
+        self.assertEqual(return_statusCode, 200, "The returned status code should be 200")
+        self.assertNotEqual(return_account, [], "The returned list should not be empty")
 
 #Main testing function
 def main():
