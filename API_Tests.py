@@ -54,8 +54,23 @@ class Test_API(unittest.TestCase):
         self.assertNotEqual(return_transaction, [], "The returned list should not be empty")
 
     ##Testing the getAccountByID function
+    def test_getAccountByID(self):
+        testAccountID = "15085119"
+        getAccountByID_return = api.getAccountByID(testAccountID)
+        return_statusCode = getAccountByID_return["status"]
+        return_transaction = getAccountByID_return["transaction"]
+        self.assertEqual(return_statusCode, 200, "The returned status code should be 200")
+        self.assertNotEqual(return_transaction, [], "The returned list should not be empty")
 
     ##Testing the getTransactionByID function
+    def test_getTransactionByID(self):
+        testAccountID = "78798428"
+        testTransactionID = "fc6bef1c-470e-47b3-aa84-03126c4f49f9"
+        getTransactionByID_return = api.getTransactionByID(testAccountID, testTransactionID)
+        return_statusCode = getTransactionByID_return["status"]
+        return_transaction = getTransactionByID_return["transaction"]
+        self.assertEqual(return_statusCode, 200, "The returned status code should be 200")
+        self.assertNotEqual(return_transaction, [], "The returned list should not be empty")
 
     ##Testing the getAccountData function
 
