@@ -12,7 +12,6 @@ pygame.display.set_caption("Start Menu")
 start_btn = pygame.image.load('Sprites/StartButton.png').convert_alpha()
 quit_btn = pygame.image.load('Sprites/QuitButton.png').convert_alpha()
 
-import pygame
 
 from Game import start_btn, quit_btn, Menu_Screen
 
