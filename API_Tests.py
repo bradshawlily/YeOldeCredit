@@ -14,6 +14,12 @@ class Test_API(unittest.TestCase):
         self.assertEqual(api.createARandomAccount(), 200, "The returning status code should be 200")
 
     ##Testing the getAccountIDs function
+    def test_getAccountsIDs_emptyList(self):
+        self.assertEqual(api.getAccountIDs(), [], "The accountsIDs attribute should be empty as they have not been set yet")
+
+    def test_getAccountsIDs_populatedList(self):
+        api.setAccountIDs()
+        self.assertNotEqual(api.getAccountIDs(), [], "The accountsIDs attribute should not be empty as the setAccountsIDs method had been called")
 
     ##Testing the setAccountIDs function
 
