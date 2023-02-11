@@ -60,7 +60,7 @@ class YeOldeCredit_API:
         response = requests.post(f"https://sandbox.capitalone.co.uk/developer-services-platform-pr/api/data/fraud/transactions/accounts/{accountID}/create", headers=self.headers, data=payload)
         response_statusCode = response.status_code
         response_JSON = response.json()
-        returningObject = {"status": response_statusCode, "fraudType": fraud_type, "transactions": response_JSON["Transactions"]}
+        returningObject = {"status": response_statusCode, "fraudType": fraud_type, "transaction": response_JSON["Transactions"]}
         return returningObject
 
     #Returns the account object based on the given accountID as well as the status code for error handling

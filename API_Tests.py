@@ -43,6 +43,15 @@ class Test_API(unittest.TestCase):
         self.assertEqual(len(transactionIDs), 23, f"There should be {expectedTransactionsReturned_length} transactions under account {testAccountID}")
 
     ##Testing the createFraudulentTransactions function
+    def test_createFraudulentTransactions(self):
+        testAccountID = "53439508"
+        fraudulentTransaction_return = api.createFraudulentTransactions(testAccountID)
+        return_statusCode = fraudulentTransaction_return["status"]
+        return_fraudType = fraudulentTransaction_return["fraudType"]
+        return_transaction = fraudulentTransaction_return["transaction"]
+        self.assertEqual(return_statusCode, 200, "The returned status code should be 200")
+        self.assertNotEqual(return_fraudType, "", "A random fraud type should have been returned")
+        self.assertNotEqual(return_transaction, [], "The returned list should not be empty")
 
     ##Testing the getAccountByID function
 
