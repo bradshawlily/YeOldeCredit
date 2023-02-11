@@ -9,20 +9,32 @@ api = YeOldeCredit_API(JWT)
 
 class Test_API(unittest.TestCase):
 
+    ##Cleaner function ran after every test relating to the accountID attribute to ensure that each test can operate in isolation
+    def emptyAccountIDs(self):
+        api.accountIDs = []
+
     ##Testing the createARandomAccount function
     def test_createARandomAccount(self):
         self.assertEqual(api.createARandomAccount(), 200, "The returning status code should be 200")
 
     ##Testing the getAccountIDs function
     def test_getAccountsIDs_emptyList(self):
-        self.assertEqual(api.getAccountIDs(), [], "The accountsIDs attribute should be empty as they have not been set yet")
+        self.assertEqual(api.getAccountIDs(), [], "The accountsIDs attribute should be empty as it has not been set")
+        self.emptyAccountIDs()
 
     def test_getAccountsIDs_populatedList(self):
         api.setAccountIDs()
         self.assertNotEqual(api.getAccountIDs(), [], "The accountsIDs attribute should not be empty as the setAccountsIDs method had been called")
+        self.emptyAccountIDs()
 
     ##Testing the setAccountIDs function
-
+    def test_setAccountIDs(self):
+        api.getAccountIDs()
+        self.assertEqual(api.getAccountIDs(), [], "The accountsIDs attribute should be empty as it has not been set")
+        api.setAccountIDs()
+        self.assertNotEqual(api.getAccountIDs(), [], "The accountsIDs attribute should not be empty as the setAccountsIDs method had been called")
+        self.emptyAccountIDs()
+    
     ##Testing the getTransactionIDs function
 
     ##Testing the createFraudulentTransactions function
