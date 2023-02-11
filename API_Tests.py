@@ -36,6 +36,11 @@ class Test_API(unittest.TestCase):
         self.emptyAccountIDs()
     
     ##Testing the getTransactionIDs function
+    def test_getTransactionIDs(self):
+        testAccountID = "78798428"
+        expectedTransactionsReturned_length = 23 
+        transactionIDs = api.getTransactionIDs(testAccountID)["transactions"]
+        self.assertEqual(len(transactionIDs), 23, f"There should be {expectedTransactionsReturned_length} transactions under account {testAccountID}")
 
     ##Testing the createFraudulentTransactions function
 

@@ -107,5 +107,5 @@ load_dotenv()
 JWT=os.getenv("JWT")
 
 #Testing section
-api = API(JWT)
+api = YeOldeCredit_API(JWT)
 """
