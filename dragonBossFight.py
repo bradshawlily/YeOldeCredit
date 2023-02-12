@@ -53,5 +53,4 @@ def phase2_setup():
     account_relevantData = {"firstName": returnedAccount["firstname"], "lastName": returnedAccount["lastname"]}
 
     returningObject = {"account": account_relevantData, "transactions": transactionList}
-    print(returningObject)
     return returningObject

@@ -21,7 +21,7 @@ title_next_time = title_delay  # clock starts at 0, time for first title
 def blit_text(surface, text, pos, font, color=pygame.Color('black')):
     words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
     space = font.size(' ')[0]  # The width of a space.
-    max_width = 500
+    max_width = 550
     max_height = 300
     x, y = pos
     for line in words:
@@ -51,7 +51,7 @@ currentX = -210
 #https://stackoverflow.com/questions/20842801/how-to-display-text-in-pygame
 pygame.font.init() # you have to call this at the start, 
                    # if you want to use this module.
-my_font = pygame.font.SysFont('msgothic', 12)
+my_font = pygame.font.SysFont('msgothic', 16)
 Phase2 = False
 phase2Data = {}
 
