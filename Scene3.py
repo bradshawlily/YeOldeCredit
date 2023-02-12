@@ -6,11 +6,10 @@ SCREEN_HEIGHT = 800
 
 Scene_Screen = pygame.display.set_mode((SCREEN_HEIGHT, SCREEN_WIDTH))
 Scene_Screen.fill((0, 0, 0))  # Fills screen with specified colour
-pygame.display.set_caption("Scene Two")
+pygame.display.set_caption("Scene Three")
 
-background = pygame.image.load('Sprites/CastleBackground.png')
+background = pygame.image.load('Sprites/castleGate.png')
 background = pygame.transform.scale(background, (SCREEN_HEIGHT, SCREEN_WIDTH))
-background = pygame.transform.flip(background, True, False)
 hero = pygame.image.load("Sprites/hero_transparent.png")
 hero = pygame.transform.scale(hero, (350, 300))
 rect = background.get_rect()
@@ -32,7 +31,7 @@ while True:
             currentX += 20
             print(currentX)
        
-        if currentX == 650:
+        if currentX == 330:
             import Scene4
 
         pygame.display.update()

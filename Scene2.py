@@ -31,6 +31,6 @@ while True:
             currentX += 20
        
         if currentX == 650:
-            import Scene4
+            import Scene3
 
         pygame.display.update()

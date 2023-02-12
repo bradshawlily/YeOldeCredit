@@ -6,7 +6,7 @@ SCREEN_HEIGHT = 800
 
 Scene_Screen = pygame.display.set_mode((SCREEN_HEIGHT, SCREEN_WIDTH))
 Scene_Screen.fill((0, 0, 0))  # Fills screen with specified colour
-pygame.display.set_caption("Scene Two")
+pygame.display.set_caption("Scene Four")
 
 background = pygame.image.load('Sprites/throne-room.png')
 background = pygame.transform.scale(background, (SCREEN_HEIGHT, SCREEN_WIDTH))
