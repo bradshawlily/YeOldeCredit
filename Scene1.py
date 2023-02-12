@@ -34,7 +34,7 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
         
-        keys = pygame.key.get_pressed()
+        keys = pygame.key.get_pressed() #Method to move image across the screen was found on Stack Overflow "How to move an image in pygame with key press?" (https://stackoverflow.com/questions/67230513/how-to-move-an-image-in-pygame-with-key-press)
         if keys[pygame.K_LEFT]:
             currentX -= 20
         elif keys[pygame.K_RIGHT]:
