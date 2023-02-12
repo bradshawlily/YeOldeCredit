@@ -100,12 +100,6 @@ while True:
         elif keys[pygame.K_RIGHT]:
             currentX += 20
             print(currentX)
-       # elif keys[pygame.K_y]:
-           # Scene_Screen.blit( text_10, ( 400, 170 ))
-
-        elif keys[pygame.K_n]:
-            Scene_Screen.blit( text_11, ( 400, 170 ))
-            import Scene3
 
         if currentX == 640:
             import Scene3
