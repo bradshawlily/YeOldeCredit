@@ -16,8 +16,6 @@ quit_btn = pygame.image.load('Sprites/QuitButton.png').convert_alpha()
 from Game import start_btn, quit_btn, Menu_Screen
 
 pygame.init()
-
-
 class Button:
     def __init__(self, x, y, image):
         self.image = image
