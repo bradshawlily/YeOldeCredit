@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import random
 
 #The class that communicates with the Capital One API service
-class API:
+class YeOldeCredit_API:
     def __init__(self, JWT):
         self.JWT = JWT
         self.headers = {
@@ -25,6 +25,10 @@ class API:
         response = requests.post("https://sandbox.capitalone.co.uk/developer-services-platform-pr/api/data/accounts/create", headers=self.headers, data=payload)
         return response.status_code
     
+    #Returns the account IDs
+    def getAccountIDs(self):
+        return self.accountIDs
+
     #Sets the account IDs to the class for use in other functions
     def setAccountIDs(self):
         response = requests.get("https://sandbox.capitalone.co.uk/developer-services-platform-pr/api/data/accounts", headers=self.headers)
@@ -56,7 +60,15 @@ class API:
         response = requests.post(f"https://sandbox.capitalone.co.uk/developer-services-platform-pr/api/data/fraud/transactions/accounts/{accountID}/create", headers=self.headers, data=payload)
         response_statusCode = response.status_code
         response_JSON = response.json()
-        returningObject = {"status": response_statusCode, "fraudType": fraud_type, "transactions": response_JSON["Transactions"]}
+        returningObject = {"status": response_statusCode, "fraudType": fraud_type, "transaction": response_JSON["Transactions"]}
+        return returningObject
+
+    #Returns the account object based on the given accountID as well as the status code for error handling
+    def getAccountByID(self, accountID):
+        response = requests.get(f"https://sandbox.capitalone.co.uk/developer-services-platform-pr/api/data/accounts/{accountID}", headers=self.headers)
+        response_statusCode = response.status_code
+        response_JSON = response.json()
+        returningObject = {"status": response_statusCode, "transaction": response_JSON}
         return returningObject
 
     #Returns the transaction object based on the given accountID and transactionID as well as the status code for error handling
@@ -69,28 +81,31 @@ class API:
 
     #Returns relevant data from an account based on the parameter
     #This function was refactored from two functions, one returning data from an account that had a 'Good' credit score and another returning data from an account that had a 'Bad' credit score 
-    def getAccountData(self, parameter):
+    def getAccountData(self, parameterKey, parameterValue):
         #The FICO Credit Scores Ranges will be used in this application - information about these ranges was found on Capital One "What Is a Credit Score Range?" (https://www.capitalone.com/learn-grow/money-management/credit-score-ranges/)
         #A 'Good' Credit Score is more than or equal to 580 ('Fair' or better), according to the FICO Credit Scores Ranges
         #A 'Bad' Credit Score is less than 580 (less than 'Fair'), according to the FICO Credit Scores Ranges
         params = {
-            "creditScore": parameter
+            parameterKey: parameterValue
         }
 
         response = requests.get("https://sandbox.capitalone.co.uk/developer-services-platform-pr/api/data/accounts", headers=self.headers, params=params)
         response_statusCode = response.status_code
         response_JSON = response.json()["Accounts"]
-        account = response_JSON[0]
-        account_object = {"balance":account["balance"], "creditScore": account["creditScore"], "currencyCode":account["currencyCode"], "riskScore":account["riskScore"], "state": account["state"]}
-        returningObject = {"status": response_statusCode, "account": account_object}
+        if response_JSON == []:
+            returningObject = {"status": "No accounts found"}
+        else:
+            randomObjectIndex = random.randint(0, len(response_JSON))-1
+            account = response_JSON[randomObjectIndex]
+            account_object = {"balance":account["balance"], "creditScore": account["creditScore"], "currencyCode":account["currencyCode"], "riskScore":account["riskScore"], "state": account["state"]}
+            returningObject = {"status": response_statusCode, "account": account_object}
         return returningObject
 
-    def createNewTransaction(self, accountID):
-        return ""
-
+"""
 #load the environment variables from the .env file - method to do so found on Twilio "Working with Environment Variables in Python" (https://www.twilio.com/blog/environment-variables-python)
 load_dotenv()
 JWT=os.getenv("JWT")
 
 #Testing section
-api = API(JWT)
+api = YeOldeCredit_API(JWT)
+"""
