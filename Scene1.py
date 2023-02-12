@@ -36,10 +36,10 @@ while True:
     Scene_Screen.fill((0, 0, 0))
     Scene_Screen.blit(background, background_rect)
     Scene_Screen.blit(villager, (500,100))
-    Scene_Screen.blit(hero, (currentX,100))
     Scene_Screen.blit(speechBubble, (350, 50))
     Scene_Screen.blit(text_surface1, (440,120))
     Scene_Screen.blit(text_surface2, (440,145))
+    Scene_Screen.blit(hero, (currentX,100))
 
 
 
