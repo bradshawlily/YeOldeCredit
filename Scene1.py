@@ -20,19 +20,27 @@ speechBubble = pygame.transform.scale(speechBubble, (300, 200))
 villager = pygame.transform.flip(villager, True, False)
 speechBubble = pygame.transform.flip(speechBubble, True, False)
 background_rect = background.get_rect()
+currentX = 50
 
 # Game loop
 while True:
     Scene_Screen.fill((0, 0, 0))
     Scene_Screen.blit(background, background_rect)
     Scene_Screen.blit(villager, (500,100))
-    Scene_Screen.blit(hero, (50,100))
+    Scene_Screen.blit(hero, (currentX,100))
     Scene_Screen.blit(speechBubble, (350, 50))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            print(pygame.mouse.get_pos())
+        
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            currentX -= 20
+        elif keys[pygame.K_RIGHT]:
+            currentX += 20
+       
+        if currentX == 670:
+            import Scene2
 
         pygame.display.update()
