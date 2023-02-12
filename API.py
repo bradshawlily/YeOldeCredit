@@ -1,6 +1,5 @@
 import json
 import requests
-import os
 from dotenv import load_dotenv
 import random
 
@@ -68,7 +67,7 @@ class YeOldeCredit_API:
         response = requests.get(f"https://sandbox.capitalone.co.uk/developer-services-platform-pr/api/data/accounts/{accountID}", headers=self.headers)
         response_statusCode = response.status_code
         response_JSON = response.json()
-        returningObject = {"status": response_statusCode, "transaction": response_JSON}
+        returningObject = {"status": response_statusCode, "account": response_JSON}
         return returningObject
 
     #Returns the transaction object based on the given accountID and transactionID as well as the status code for error handling
@@ -100,12 +99,3 @@ class YeOldeCredit_API:
             account_object = {"balance":account["balance"], "creditScore": account["creditScore"], "currencyCode":account["currencyCode"], "riskScore":account["riskScore"], "state": account["state"]}
             returningObject = {"status": response_statusCode, "account": account_object}
         return returningObject
-
-"""
-#load the environment variables from the .env file - method to do so found on Twilio "Working with Environment Variables in Python" (https://www.twilio.com/blog/environment-variables-python)
-load_dotenv()
-JWT=os.getenv("JWT")
-
-#Testing section
-api = YeOldeCredit_API(JWT)
-"""

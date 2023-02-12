@@ -58,7 +58,7 @@ class Test_API(unittest.TestCase):
         testAccountID = "15085119"
         getAccountByID_return = api.getAccountByID(testAccountID)
         return_statusCode = getAccountByID_return["status"]
-        return_transaction = getAccountByID_return["transaction"]
+        return_transaction = getAccountByID_return["account"]
         self.assertEqual(return_statusCode, 200, "The returned status code should be 200")
         self.assertNotEqual(return_transaction, [], "The returned list should not be empty")
 

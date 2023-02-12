@@ -26,10 +26,8 @@ while True:
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
             currentX -= 20
-            print(currentX)
         elif keys[pygame.K_RIGHT]:
             currentX += 20
-            print(currentX)
        
         if currentX == 330:
             import Scene4
